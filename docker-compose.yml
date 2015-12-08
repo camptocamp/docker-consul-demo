@@ -19,10 +19,7 @@ consul:
   environment:
     SERVICE_IGNORE: 'yes'
   ports:
-    - "8300:8300"
-    - "8400:8400"
     - "8500:8500"
-    - "8600:53/udp"
 
 registrator:
   command: "-ip ${IPADDRESS} consul://consul:8500"
