@@ -1,3 +1,4 @@
+# One max per physical node
 lb:
   image: asteris/haproxy-consul:latest
   environment:
@@ -13,6 +14,7 @@ lb:
   volumes:
     - "${PWD}/haproxy.tmpl:/consul-template/template.d/consul.tmpl"
 
+# Only one for the whole cluster
 consul:
   command: -server -bootstrap
   image: progrium/consul:latest
@@ -21,6 +23,7 @@ consul:
   ports:
     - "8500:8500"
 
+# Exactly one per physical node
 registrator:
   command: "-ip ${IPADDRESS} consul://consul:8500"
   image: gliderlabs/registrator:latest
@@ -29,6 +32,7 @@ registrator:
   volumes:
     - "/var/run/docker.sock:/tmp/docker.sock"
 
+# As many as wanted
 web:
   image: tutum/hello-world
   environment:
