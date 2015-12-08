@@ -3,9 +3,11 @@ lb:
   environment:
     HAPROXY_DOMAIN: "${IPADDRESS}.xip.io"
     CONSUL_CONNECT: consul:8500
-    SERVICE_IGNORE: 'yes'
+    SERVICE_80_IGNORE: 'yes'
+    SERVICE_8080_NAME: 'proxy-admin'
   ports:
     - "80:80"
+    - "8080"
   links:
     - "consul"
   volumes:
