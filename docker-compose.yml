@@ -7,7 +7,7 @@ lb:
   ports:
     - "80:80"
   volumes:
-    - "./haproxy.tmpl:/consul-template/template.d/haproxy.tmpl"
+    - "./haproxy.tmpl:/consul-template/template.d/consul.tmpl"
 
 consul:
   command: -server -bootstrap
