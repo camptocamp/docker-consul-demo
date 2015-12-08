@@ -26,6 +26,6 @@ registrator:
 web:
   image: httpd:2.4
   volumes:
-    - "/home/rpinson/bas/consul/htdocs:/usr/local/apache2/htdocs"
+    - "./htdocs:/usr/local/apache2/htdocs"
   ports:
     - "80"
