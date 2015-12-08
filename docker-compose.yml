@@ -1,12 +1,13 @@
 lb:
-  net: host
   image: asteris/haproxy-consul:latest
   environment:
     HAPROXY_DOMAIN: "${IPADDRESS}.xip.io"
-    CONSUL_CONNECT: localhost:8500
+    CONSUL_CONNECT: consul:8500
     SERVICE_IGNORE: 'yes'
   ports:
     - "80:80"
+  links:
+    - "consul"
   volumes:
     - "${PWD}/haproxy.tmpl:/consul-template/template.d/consul.tmpl"
 
@@ -22,9 +23,10 @@ consul:
     - "8600:53/udp"
 
 registrator:
-  net: host
-  command: "consul://localhost:8500 -ip ${IPADDRESS}"
+  command: "-ip ${IPADDRESS} consul://consul:8500"
   image: gliderlabs/registrator:latest
+  links:
+    - "consul"
   volumes:
     - "/var/run/docker.sock:/tmp/docker.sock"
 
