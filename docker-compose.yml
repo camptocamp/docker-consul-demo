@@ -27,5 +27,7 @@ registrator:
 
 web:
   image: tutum/hello-world
+  environment:
+    SERVICE_NAME: 'web'
   ports:
     - "80"
