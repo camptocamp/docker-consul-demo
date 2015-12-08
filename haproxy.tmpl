@@ -8,6 +8,10 @@ defaults
     timeout client {{or (key "service/haproxy/timeouts/client") "50000ms"}}
     timeout server {{or (key "service/haproxy/timeouts/server") "50000ms"}}
 
+listen stats :8080
+  stats enable
+  stats uri /
+
 frontend www
     bind *:80
 

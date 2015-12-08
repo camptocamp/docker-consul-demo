@@ -2,12 +2,12 @@ lb:
   net: host
   image: asteris/haproxy-consul:latest
   environment:
-    HAPROXY_DOMAIN: 10.26.10.92.xip.io
+    HAPROXY_DOMAIN: "${IPADDRESS}.xip.io"
     CONSUL_CONNECT: localhost:8500
   ports:
     - "80:80"
   volumes:
-    - "./haproxy.tmpl:/consul-template/template.d/consul.tmpl"
+    - "${PWD}/haproxy.tmpl:/consul-template/template.d/consul.tmpl"
 
 consul:
   command: -server -bootstrap
@@ -17,8 +17,6 @@ consul:
     - "8400:8400"
     - "8500:8500"
     - "8600:53/udp"
-  volumes:
-    - "dataconsul:/var/consul"
 
 registrator:
   net: host
