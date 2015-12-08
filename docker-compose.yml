@@ -26,8 +26,6 @@ registrator:
     - "/var/run/docker.sock:/tmp/docker.sock"
 
 web:
-  image: httpd:2.4
-  volumes:
-    - "./htdocs:/usr/local/apache2/htdocs"
+  image: tutum/hello-world
   ports:
     - "80"
