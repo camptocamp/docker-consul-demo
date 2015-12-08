@@ -6,6 +6,8 @@ lb:
     CONSUL_CONNECT: localhost:8500
   ports:
     - "80:80"
+  volumes:
+    - "./haproxy.tmpl:/consul-template/template.d/haproxy.tmpl"
 
 consul:
   command: -server -bootstrap
