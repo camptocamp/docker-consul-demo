@@ -4,6 +4,7 @@ lb:
   environment:
     HAPROXY_DOMAIN: "${IPADDRESS}.xip.io"
     CONSUL_CONNECT: localhost:8500
+    SERVICE_IGNORE: 'yes'
   ports:
     - "80:80"
   volumes:
@@ -12,6 +13,8 @@ lb:
 consul:
   command: -server -bootstrap
   image: progrium/consul:latest
+  environment:
+    SERVICE_IGNORE: 'yes'
   ports:
     - "8300:8300"
     - "8400:8400"
