@@ -23,7 +23,7 @@ consul:
 
 registrator:
   net: host
-  command: consul://localhost:8500 -internal
+  command: "consul://localhost:8500 -ip ${IPADDRESS}"
   image: gliderlabs/registrator:latest
   volumes:
     - "/var/run/docker.sock:/tmp/docker.sock"
