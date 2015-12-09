@@ -19,9 +19,12 @@ consul:
   command: -server -bootstrap
   image: progrium/consul:latest
   environment:
-    SERVICE_IGNORE: 'yes'
-  ports:
-    - "8500:8500"
+    SERVICE_53_IGNORE: 'yes'
+    SERVICE_8300_IGNORE: 'yes'
+    SERVICE_8301_IGNORE: 'yes'
+    SERVICE_8302_IGNORE: 'yes'
+    SERVICE_8400_IGNORE: 'yes'
+    SERVICE_8500_NAME: 'consul-admin'
 
 # Exactly one per physical node
 registrator:
