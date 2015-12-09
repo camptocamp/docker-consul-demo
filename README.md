@@ -29,6 +29,8 @@ You will then be able to see:
 * the haproxy dashboard at [http://proxy-admin.127.0.0.1.xip.io](http://proxy-admin.127.0.0.1.xip.io)
 
 
+### Start the application stack
+
 Then launch the hello-world application with:
 
 ```
