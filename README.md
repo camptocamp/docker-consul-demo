@@ -39,3 +39,15 @@ You will see:
 * A new node added to the [consul dashboard](http://consul-admin.127.0.0.1.xip.io)
 * A new backend added to the [haproxy dashboard](http://proxy-admin.127.0.0.1.xip.io)
 * A changing ID when refreshing the [application page](http://hello-dev.127.0.0.1.xip.io)
+
+
+## TODO
+
+-[] Test with an overlay network and:
+
+  -[] get rid of links
+  -[] use consul DNS instead of links
+
+-[] Test on swarm
+-[] Port to an AWS ECS stack with CloudFormation
+
