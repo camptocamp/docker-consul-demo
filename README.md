@@ -52,6 +52,27 @@ Health checking is implemented at two levels in this stack:
 If either check fails, the node will not be proxified.
 
 
+You can test the HTTP check with:
+
+```
+$ docker-compose scale web=3
+$ docker exec -ti $(basename $PWD)_web_2 kill 8
+```
+
+This will kill the `php-fpm` master process of the second container:
+
+* The `web_2` node will be shown in error in the [consul dashboard](http://consul-admin.127.0.0.1.xip.io/ui/#/dc1/services/hello-dev)
+* The `web_2` node will not appear anymore in the [haproxy dashboard](http://proxy-admin.127.0.0.1.xip.io/#hello-dev_backend)
+* The service will still run on the two other instances
+
+To fix it, kill the container and scale again:
+
+```
+$ docker rm -f $(basename $PWD)_web_2
+$ docker-compose scale web=3
+```
+
+
 ## TODO
 
 - [ ] Test with an overlay network and:
