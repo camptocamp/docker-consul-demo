@@ -47,7 +47,7 @@ You will see:
 Health checking is implemented at two levels in this stack:
 
 * [haproxy](http://proxy-admin.127.0.0.1.xip.io) checks that port 80 of each member is up
-* [consul](http://consul-admin.127.0.0.1.xip.io) checks that `/` of each member returns a 200 status
+* [consul](http://consul-admin.127.0.0.1.xip.io) checks that the node is up and that `/` returns a 200 status
 
 If either check fails, the node will not be proxified.
 
