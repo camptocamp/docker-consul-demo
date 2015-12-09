@@ -23,14 +23,14 @@ $ docker-compose -f consul.yml up -d
 Then launch the hello-world application with:
 
 ```
-$ docker-compose -f hello.yml up -d
+$ docker-compose up -d
 ```
 
 
 You could also launch both stacks in one go with:
 
 ```
-$ docker-compose -f consul.yml -f hello.yml up -d
+$ docker-compose -f consul.yml -f docker-compose.yml up -d
 ```
 
 ## What is there to see?
@@ -47,7 +47,7 @@ Once the stacks are started, you can view:
 If you type:
 
 ```
-$ docker-compose -f hello.yml scale web=2
+$ docker-compose scale web=2
 ```
 
 You will see:
@@ -70,7 +70,7 @@ If either check fails, the node will not be proxified.
 You can test the HTTP check with:
 
 ```
-$ docker-compose -f hello.yml scale web=3
+$ docker-compose scale web=3
 $ docker exec -ti $(basename $PWD)_web_2 pkill php-fpm
 ```
 
@@ -84,7 +84,7 @@ To fix it, kill the container and scale again:
 
 ```
 $ docker rm -f $(basename $PWD)_web_2
-$ docker-compose -f hello.yml scale web=3
+$ docker-compose scale web=3
 ```
 
 
