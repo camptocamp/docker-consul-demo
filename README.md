@@ -26,6 +26,7 @@ Once the stack is started, you can view:
 * the haproxy dashboard at [http://proxy-admin.127.0.0.1.xip.io](http://proxy-admin.127.0.0.1.xip.io)
 * the running application at [http://hello-dev.127.0.0.1.xip.io](http://hello-dev.127.0.0.1.xip.io)
 
+
 ## Scale the app
 
 If you type:
@@ -41,9 +42,18 @@ You will see:
 * A changing ID when refreshing the [application page](http://hello-dev.127.0.0.1.xip.io)
 
 
+## Health checking
+
+Health checking is implemented at two levels in this stack:
+
+* [haproxy](http://proxy-admin.127.0.0.1.xip.io) checks that port 80 of each member is up
+* [consul](http://consul-admin.127.0.0.1.xip.io) checks that `/` of each member returns a 200 status
+
+If either check fails, the node will not be proxified.
+
+
 ## TODO
 
-- [ ] Add health checks
 - [ ] Test with an overlay network and:
 
   - [ ] get rid of links
