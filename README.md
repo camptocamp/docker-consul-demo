@@ -15,9 +15,9 @@ This is a demo using:
 ## How to run
 
 
-### Start the consul/registrator stack
+### Start the consul/registrator/haproxy stack
 
-First, launch the consul/registrator base infrastructure with:
+First, launch the consul/registrator/haproxy base infrastructure with:
 
 ```
 $ docker-compose -f consul.yml up -d
