@@ -14,11 +14,20 @@ This is a demo using:
 
 ## How to run
 
+
+### Start the consul/registrator stack
+
 First, launch the consul/registrator base infrastructure with:
 
 ```
 $ docker-compose -f consul.yml up -d
 ```
+
+You will then be able to see:
+
+* the consul dashboard at [http://consul-admin.127.0.0.1.xip.io](http://consul-admin.127.0.0.1.xip.io)
+* the haproxy dashboard at [http://proxy-admin.127.0.0.1.xip.io](http://proxy-admin.127.0.0.1.xip.io)
+
 
 Then launch the hello-world application with:
 
@@ -26,20 +35,16 @@ Then launch the hello-world application with:
 $ docker-compose up -d
 ```
 
+which will let you access:
+
+* the running application at [http://hello-dev.127.0.0.1.xip.io](http://hello-dev.127.0.0.1.xip.io)
+
 
 You could also launch both stacks in one go with:
 
 ```
 $ docker-compose -f consul.yml -f docker-compose.yml up -d
 ```
-
-## What is there to see?
-
-Once the stacks are started, you can view:
-
-* the consul dashboard at [http://consul-admin.127.0.0.1.xip.io](http://consul-admin.127.0.0.1.xip.io)
-* the haproxy dashboard at [http://proxy-admin.127.0.0.1.xip.io](http://proxy-admin.127.0.0.1.xip.io)
-* the running application at [http://hello-dev.127.0.0.1.xip.io](http://hello-dev.127.0.0.1.xip.io)
 
 
 ## Scale the app
