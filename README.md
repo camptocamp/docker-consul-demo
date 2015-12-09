@@ -43,11 +43,11 @@ You will see:
 
 ## TODO
 
--[] Test with an overlay network and:
+- [ ] Test with an overlay network and:
 
-  -[] get rid of links
-  -[] use consul DNS instead of links
+  - [ ] get rid of links
+  - [ ] use consul DNS instead of links
 
--[] Test on swarm
--[] Port to an AWS ECS stack with CloudFormation
+- [ ] Test on swarm
+- [ ] Port to an AWS ECS stack with CloudFormation
 
