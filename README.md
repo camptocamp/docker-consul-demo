@@ -41,12 +41,10 @@ which will let you access:
 
 * the running application at [http://hello-dev.127.0.0.1.xip.io](http://hello-dev.127.0.0.1.xip.io)
 
+the `web_1` node was also added to:
 
-You could also launch both stacks in one go with:
-
-```
-$ docker-compose -f consul.yml -f docker-compose.yml up -d
-```
+* the [consul dashboard](http://consul-admin.127.0.0.1.xip.io/ui/#/dc1/services/hello-dev) as a service node
+* the [haproxy dashboard](http://proxy-admin.127.0.0.1.xip.io/#hello-dev_backend) as a backend
 
 
 ## Scale the app
