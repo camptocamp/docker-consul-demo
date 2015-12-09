@@ -14,13 +14,21 @@ This is a demo using:
 
 ## How to run
 
+First, launch the consul/registrator base infrastructure with:
+
 ```
-$ docker-compose up -d
+$ docker-compose -f consul.yml up -d
+```
+
+Then launch the hello-world application with:
+
+```
+$ docker-compose -f hello.yml up -d
 ```
 
 ## What is there to see?
 
-Once the stack is started, you can view:
+Once the stacks are started, you can view:
 
 * the consul dashboard at [http://consul-admin.127.0.0.1.xip.io](http://consul-admin.127.0.0.1.xip.io)
 * the haproxy dashboard at [http://proxy-admin.127.0.0.1.xip.io](http://proxy-admin.127.0.0.1.xip.io)
@@ -32,7 +40,7 @@ Once the stack is started, you can view:
 If you type:
 
 ```
-$ docker-compose scale web=2
+$ docker-compose -f hello.yml scale web=2
 ```
 
 You will see:
@@ -55,7 +63,7 @@ If either check fails, the node will not be proxified.
 You can test the HTTP check with:
 
 ```
-$ docker-compose scale web=3
+$ docker-compose -f hello.yml scale web=3
 $ docker exec -ti $(basename $PWD)_web_2 kill 8
 ```
 
@@ -69,7 +77,7 @@ To fix it, kill the container and scale again:
 
 ```
 $ docker rm -f $(basename $PWD)_web_2
-$ docker-compose scale web=3
+$ docker-compose -f hello.yml scale web=3
 ```
 
 
