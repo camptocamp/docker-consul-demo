@@ -43,6 +43,7 @@ You will see:
 
 ## TODO
 
+- [ ] Add health checks
 - [ ] Test with an overlay network and:
 
   - [ ] get rid of links
