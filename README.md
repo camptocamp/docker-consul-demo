@@ -26,6 +26,13 @@ Then launch the hello-world application with:
 $ docker-compose -f hello.yml up -d
 ```
 
+
+You could also launch both stacks in one go with:
+
+```
+$ docker-compose -f consul.yml -f hello.yml up -d
+```
+
 ## What is there to see?
 
 Once the stacks are started, you can view:
