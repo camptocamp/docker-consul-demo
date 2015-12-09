@@ -25,7 +25,7 @@ consul:
 
 # Exactly one per physical node
 registrator:
-  command: "-ip ${IPADDRESS} consul://consul:8500"
+  command: "-internal consul://consul:8500"
   image: gliderlabs/registrator:latest
   links:
     - "consul"
@@ -36,6 +36,4 @@ registrator:
 web:
   image: tutum/hello-world
   environment:
-    SERVICE_NAME: 'web'
-  ports:
-    - "80"
+    SERVICE_NAME: 'web-dev'
