@@ -64,7 +64,7 @@ You can test the HTTP check with:
 
 ```
 $ docker-compose -f hello.yml scale web=3
-$ docker exec -ti $(basename $PWD)_web_2 kill 8
+$ docker exec -ti $(basename $PWD)_web_2 pkill php-fpm
 ```
 
 This will kill the `php-fpm` master process of the second container:
