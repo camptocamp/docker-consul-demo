@@ -11,8 +11,6 @@ lb:
     - "8080"
   links:
     - "consul"
-  volumes:
-    - "./haproxy.tmpl:/etc/consul-template/template.d/haproxy.tmpl"
 
 # Only one for the whole cluster
 consul:
