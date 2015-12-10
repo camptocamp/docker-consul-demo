@@ -48,7 +48,7 @@ which will let you access:
 
 the `web_1` node was also added to:
 
-* the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www.hello) as a service node
+* the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www) as a service node
 * the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io/#hello_www_backend) as a backend
 
 
@@ -86,7 +86,7 @@ $ docker exec -ti $(basename $PWD)_web_2 pkill php-fpm
 
 This will kill the `php-fpm` master process of the second container:
 
-* The `web_2` node will be shown in error in the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www.hello)
+* The `web_2` node will be shown in error in the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www)
 * The `web_2` node will not appear anymore in the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io/#hello_www_backend)
 * The service will still run on the two other instances
 
@@ -96,6 +96,24 @@ To fix it, kill the container and scale again:
 $ docker rm -f $(basename $PWD)_web_2
 $ docker-compose scale web=3
 ```
+
+## Use service tags
+
+Subdomains behind the haproxy are managed using service tags. An example is provided in [hello2.yml](hello2.yml), which provides the same `www` service as `docker-compose.yml`, but using a `world.dev` tag. The container is also named differently (`web2`) to avoid compose thinking it's the same containers.
+
+If you launch:
+
+```
+$ docker-compose -f hello2.yml up -d
+```
+
+you should see:
+
+* A new `world.dev` tag for the `www` service in the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www)
+* A new node in that service
+* A new `world.dev_www` backend in the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io/#world.dev_www_backend)
+
+You can access the new application at [http://www.world.dev.127.0.0.1.xip.io](http://www.world.dev.127.0.0.1.xip.io)
 
 
 ## TODO
