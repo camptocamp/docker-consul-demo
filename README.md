@@ -12,6 +12,11 @@ This is a demo using:
 * registrator to automatically feed consul with new containers
 * tutum/hello-world as the demo application
 
+
+![docker_consul_haproxy](https://camo.githubusercontent.com/0f9ce22895adb7538c0a641d3efcba1ec1ca9b39/687474703a2f2f63646e2d616b2e662e73742d686174656e612e636f6d2f696d616765732f666f746f6c6966652f662f666f6f7374616e2f32303134313032362f32303134313032363032313831342e706e67)
+
+
+
 ## How to run
 
 
