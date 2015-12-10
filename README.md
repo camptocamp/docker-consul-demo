@@ -30,8 +30,8 @@ $ docker-compose -f consul.yml up -d
 
 You will then be able to see:
 
-* the consul dashboard at [http://consul-admin.127.0.0.1.xip.io](http://consul-admin.127.0.0.1.xip.io)
-* the haproxy dashboard at [http://proxy-admin.127.0.0.1.xip.io](http://proxy-admin.127.0.0.1.xip.io)
+* the consul dashboard at [http://consul-admin.infra.127.0.0.1.xip.io](http://consul-admin.infra.127.0.0.1.xip.io)
+* the haproxy dashboard at [http://proxy-admin.infra.127.0.0.1.xip.io](http://proxy-admin.infra.127.0.0.1.xip.io)
 
 
 ### Start the application stack
@@ -44,12 +44,12 @@ $ docker-compose up -d
 
 which will let you access:
 
-* the running application at [http://hello-dev.127.0.0.1.xip.io](http://hello-dev.127.0.0.1.xip.io)
+* the running application at [http://www.hello.127.0.0.1.xip.io](http://www.hello.127.0.0.1.xip.io)
 
 the `web_1` node was also added to:
 
-* the [consul dashboard](http://consul-admin.127.0.0.1.xip.io/ui/#/dc1/services/hello-dev) as a service node
-* the [haproxy dashboard](http://proxy-admin.127.0.0.1.xip.io/#hello-dev_backend) as a backend
+* the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www.hello) as a service node
+* the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io/#hello_www_backend) as a backend
 
 
 ## Scale the app
@@ -62,17 +62,17 @@ $ docker-compose scale web=2
 
 You will see:
 
-* A new node added to the [consul dashboard](http://consul-admin.127.0.0.1.xip.io)
-* A new backend added to the [haproxy dashboard](http://proxy-admin.127.0.0.1.xip.io)
-* A changing ID when refreshing the [application page](http://hello-dev.127.0.0.1.xip.io)
+* A new node added to the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io)
+* A new backend added to the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io)
+* A changing ID when refreshing the [application page](http://www.hello.127.0.0.1.xip.io)
 
 
 ## Health checking
 
 Health checking is implemented at two levels in this stack:
 
-* [haproxy](http://proxy-admin.127.0.0.1.xip.io) checks that port 80 of each member is up
-* [consul](http://consul-admin.127.0.0.1.xip.io) checks that the node is up and that `/` returns a 200 status
+* [haproxy](http://proxy-admin.infra.127.0.0.1.xip.io) checks that port 80 of each member is up
+* [consul](http://consul-admin.infra.127.0.0.1.xip.io) checks that the node is up and that `/` returns a 200 status
 
 If either check fails, the node will not be proxified.
 
@@ -86,8 +86,8 @@ $ docker exec -ti $(basename $PWD)_web_2 pkill php-fpm
 
 This will kill the `php-fpm` master process of the second container:
 
-* The `web_2` node will be shown in error in the [consul dashboard](http://consul-admin.127.0.0.1.xip.io/ui/#/dc1/services/hello-dev)
-* The `web_2` node will not appear anymore in the [haproxy dashboard](http://proxy-admin.127.0.0.1.xip.io/#hello-dev_backend)
+* The `web_2` node will be shown in error in the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www.hello)
+* The `web_2` node will not appear anymore in the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io/#hello_www_backend)
 * The service will still run on the two other instances
 
 To fix it, kill the container and scale again:

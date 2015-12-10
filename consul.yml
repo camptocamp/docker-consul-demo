@@ -5,11 +5,14 @@ lb:
     HAPROXY_DOMAIN: "127.0.0.1.xip.io"
     SERVICE_80_IGNORE: 'yes'
     SERVICE_8080_NAME: 'proxy-admin'
+    SERVICE_8080_TAGS: 'infra'
   ports:
     - "80:80"
     - "8080"
   links:
     - "consul"
+  volumes:
+    - "./haproxy.tmpl:/etc/consul-template/template.d/haproxy.tmpl"
 
 # Only one for the whole cluster
 consul:
@@ -22,6 +25,7 @@ consul:
     SERVICE_8302_IGNORE: 'yes'
     SERVICE_8400_IGNORE: 'yes'
     SERVICE_8500_NAME: 'consul-admin'
+    SERVICE_8500_TAGS: 'infra'
 
 # Exactly one per physical node
 registrator:
