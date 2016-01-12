@@ -1,11 +1,11 @@
 # One max per physical node
 lb:
-  image: camptocamp/haproxy-consul:latest
+  image: camptocamp/haproxy-consul:notags_underscore
   environment:
-    HAPROXY_DOMAIN: "127.0.0.1.xip.io"
     SERVICE_80_IGNORE: 'yes'
-    SERVICE_8080_NAME: 'proxy-admin'
-    SERVICE_8080_TAGS: 'infra'
+    SERVICE_8080_NAME: 'proxy-admin_infra_internal'
+  volumes:
+    - "/home/rpinson/dev/docker-haproxy-consul/haproxy.tmpl:/etc/consul-template/template.d/haproxy.tmpl:ro"
   ports:
     - "80:80"
     - "8080"
@@ -22,8 +22,7 @@ consul:
     SERVICE_8301_IGNORE: 'yes'
     SERVICE_8302_IGNORE: 'yes'
     SERVICE_8400_IGNORE: 'yes'
-    SERVICE_8500_NAME: 'consul-admin'
-    SERVICE_8500_TAGS: 'infra'
+    SERVICE_8500_NAME: 'consul-admin_infra_internal'
 
 # Exactly one per physical node
 registrator:
