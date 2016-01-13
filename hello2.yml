@@ -2,7 +2,7 @@
 web2:
   image: tutum/hello-world
   environment:
-    SERVICE_NAME: 'geoserver_dev_geoacorda_org'
+    SERVICE_NAME: 'www_hello'
     SERVICE_CHECK_HTTP: '/'
     SERVICE_CHECK_INTERVAL: '5s'
-    SERVICE_TAGS: 'sticky_session,public_ipaddress=128.1.2.3,server_aliases=geoserver.dev.geoacorda.net:truc.foo.bar'
+    SERVICE_TAGS: 'sticky_session,public_ipaddress=128.1.2.3,server_aliases=hello.world.127.0.0.1.xip.io,hello.home.127.0.0.1.xip.io'
