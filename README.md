@@ -115,7 +115,7 @@ you should see:
 * A new node in that service
 * A new `world.dev_www` backend in the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io/#world.dev_www_backend)
 
-You can access the new application at [http://www.world.dev.127.0.0.1.xip.io](http://www.world.dev.127.0.0.1.xip.io)
+You can access the new application at [http://www.world.dev.127.0.0.1.xip.io](http://www.world.dev.127.0.0.1.xip.io) as well as [http://hello.home.127.0.0.1.xip.io](http://hello.home.127.0.0.1.xip.io).
 
 
 ## TODO
