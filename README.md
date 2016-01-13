@@ -101,7 +101,7 @@ $ docker-compose scale web=3
 
 ## Use service tags
 
-Subdomains behind the haproxy are managed using service tags. An example is provided in [hello2.yml](hello2.yml), which provides the same `www` service as `docker-compose.yml`, but using a `world.dev` tag. The container is also named differently (`web2`) to avoid compose thinking it's the same containers.
+Options of the haproxy are managed using service tags. An example is provided in [hello2.yml](hello2.yml), which provides the same `www` service as `docker-compose.yml`, but using a `world.dev` domain name, as well as `hello.home`, using a `server_aliases=` tag. The container is also named differently (`web2`) to avoid compose thinking it's the same containers.
 
 If you launch:
 
