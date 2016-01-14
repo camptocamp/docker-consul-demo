@@ -118,6 +118,23 @@ you should see:
 You can access the new application at [http://www.world.dev.127.0.0.1.xip.io](http://www.world.dev.127.0.0.1.xip.io) as well as [http://hello.home.127.0.0.1.xip.io](http://hello.home.127.0.0.1.xip.io).
 
 
+## Notes
+
+### Application internal load-balancing
+
+The current setup using haproxy, consul and registrator makes it easy to load-balance applications by their service names (and optionally server aliases).
+
+However, it does not solve out of the box the problem of internal load-balancing (i.e. when component A of the application needs to connect to component B, in a load-balanced way). One way to achieve that is demonstrated in `hello2.yml`, using `external_links`. In our case, this would be:
+
+```yaml
+- "load-balancer:B"
+```
+
+This will insert and entry for `B` in `/etc/hosts`, resolving to the IP of the haproxy container. Since haproxy-consul will accept connections with the simple service name `B`, this will effectively load-balance to all `B` containers behind the proxy, without using the full address.
+
+This saves us from using an ambassador or connectable for this purpose, since haproxy can load-balance on dynamic IP/port combinations.
+
+
 ## TODO
 
 - [ ] Test with an overlay network and:
