@@ -178,4 +178,4 @@ In a CI/CD setup, it would be rather simple to use for example the commit ID or 
 - [ ] Test on swarm
 - [ ] Port to an AWS ECS stack with CloudFormation
 - [ ] Add a demo of internal load-balancing using the haproxy container with the short service name
-
+- [ ] Prioritize local containers (with weights) on the proxy (using the IP address in the service registration?)
