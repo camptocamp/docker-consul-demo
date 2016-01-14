@@ -164,6 +164,8 @@ serviceB:
 In this setup, provided the composition is started with `PROD_LINE=prod`, `serviceA` will be accessible by users as `serviceA.prod.example.com` (provided the DNS entry is made to point to the proxy). ServiceA will be able to communicate with serviceB by directly using the `serviceB.prod` name. The `$SERVICE_B` environment variable is passed to the serviceA container for that purpose.
 
 
+In a CI/CD setup, it would be rather simple to use for example the commit ID or the branch name as the `PROD_LINE` value, allowing to point to domains such as `serviceA.2a5bf183.example.com` or `serviceA.feat42.example.com`.
+
 
 
 ## TODO
