@@ -2,7 +2,7 @@
 lb:
   image: camptocamp/haproxy-consul:latest
   environment:
-    HAPROXY_DOMAIN: '127.0.0.1.xip.io'
+    HAPROXY_DOMAIN: '127.0.0.1.xip.io:test'
     SERVICE_80_IGNORE: 'yes'
     SERVICE_8080_NAME: 'proxy-admin_infra'
   ports:
