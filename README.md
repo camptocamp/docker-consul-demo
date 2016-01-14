@@ -135,6 +135,37 @@ This will insert and entry for `B` in `/etc/hosts`, resolving to the IP of the h
 This saves us from using an ambassador or connectable for this purpose, since haproxy can load-balance on dynamic IP/port combinations.
 
 
+### Multiple versions of the same service
+
+Since there is currently no namespace system in consul, deploying multiple versions of the same service can be tricky. The official recommendation seems to use tags, ACLs and prepared queries. This is complex and quite confusing (since all nodes are listed under the same service name with different labels).
+
+What we are advocating with this setup is to use different service names, which will map to different domain names behind the proxies. One way to do that would be to have an environment variable set up when launching your `docker-compose` stack. For example, if that variable is called `$PROD_LINE`, your composition could be something like:
+
+```yaml
+serviceA:
+  image: foobar/a
+  external_links:
+    - "load-balancer:serviceB.${PROD_LINE}"
+  environment:
+    SERVICE_B: "serviceB.${PROD_LINE}"
+    SERVICE_NAME: "serviceA.${PROD_LINE}"
+    SERVICE_TAGS: "server_alias=serviceA.${PROD_LINE}.example.com"
+  ports:
+    - 80
+
+serviceB:
+  image: foobar/b
+  environment:
+    SERVICE_NAME: "serviceB.${PROD_LINE}"
+  ports:
+    - 8080
+```
+
+In this setup, provided the composition is started with `PROD_LINE=prod`, `serviceA` will be accessible by users as `serviceA.prod.example.com` (provided the DNS entry is made to point to the proxy). ServiceA will be able to communicate with serviceB by directly using the `serviceB.prod` name. The `$SERVICE_B` environment variable is passed to the serviceA container for that purpose.
+
+
+
+
 ## TODO
 
 - [ ] Test with an overlay network and:
