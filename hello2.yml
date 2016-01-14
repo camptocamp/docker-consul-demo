@@ -1,6 +1,11 @@
 # As many as wanted
 web2:
   image: tutum/hello-world
+  external_links:
+    # Make all proxy-admin instances available through the proxy as proxy-admin.infra
+    - "dockerconsuldemo_lb_1:proxy-admin.infra"
+    # Make all consul-admin instances available through the proxy as consul-admin.infra
+    - "dockerconsuldemo_lb_1:consul-admin.infra"
   environment:
     SERVICE_NAME: 'www_world_dev'
     SERVICE_CHECK_HTTP: '/'
