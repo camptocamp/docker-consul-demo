@@ -144,4 +144,5 @@ This saves us from using an ambassador or connectable for this purpose, since ha
 
 - [ ] Test on swarm
 - [ ] Port to an AWS ECS stack with CloudFormation
+- [ ] Add a demo of internal load-balancing using the haproxy container with the short service name
 
