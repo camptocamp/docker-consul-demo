@@ -147,7 +147,7 @@ serviceA:
   external_links:
     - "load-balancer:serviceB.${PROD_LINE}"
   environment:
-    SERVICE_B: "serviceB.${PROD_LINE}"
+    SERVICE_B: "serviceB.${PROD_LINE}:80"
     SERVICE_NAME: "serviceA.${PROD_LINE}"
     SERVICE_TAGS: "server_alias=serviceA.${PROD_LINE}.example.com"
   ports:
