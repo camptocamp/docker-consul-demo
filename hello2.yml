@@ -11,3 +11,5 @@ web2:
     SERVICE_CHECK_HTTP: '/'
     SERVICE_CHECK_INTERVAL: '5s'
     SERVICE_TAGS: 'sticky_session,public_ipaddress=128.1.2.3,server_alias=hello.world.127.0.0.1.xip.io,server_alias=hello.home.127.0.0.1.xip.io'
+  ports:
+    - 80
