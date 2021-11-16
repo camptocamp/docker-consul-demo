@@ -32,8 +32,8 @@ $ docker-compose -f consul.yml up -d
 
 You will then be able to see:
 
-* the consul dashboard at [http://consul-admin.infra.127.0.0.1.xip.io](http://consul-admin.infra.127.0.0.1.xip.io)
-* the haproxy dashboard at [http://proxy-admin.infra.127.0.0.1.xip.io](http://proxy-admin.infra.127.0.0.1.xip.io)
+* the consul dashboard at [http://consul-admin.infra.127.0.0.1.nip.io](http://consul-admin.infra.127.0.0.1.nip.io)
+* the haproxy dashboard at [http://proxy-admin.infra.127.0.0.1.nip.io](http://proxy-admin.infra.127.0.0.1.nip.io)
 
 
 ### Start the application stack
@@ -46,12 +46,12 @@ $ docker-compose up -d
 
 which will let you access:
 
-* the running application at [http://www.hello.127.0.0.1.xip.io](http://www.hello.127.0.0.1.xip.io)
+* the running application at [http://www.hello.127.0.0.1.nip.io](http://www.hello.127.0.0.1.nip.io)
 
 the `web_1` node was also added to:
 
-* the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www) as a service node
-* the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io/#hello_www_backend) as a backend
+* the [consul dashboard](http://consul-admin.infra.127.0.0.1.nip.io/ui/#/dc1/services/www) as a service node
+* the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.nip.io/#hello_www_backend) as a backend
 
 
 ## Scale the app
@@ -64,17 +64,17 @@ $ docker-compose scale web=2
 
 You will see:
 
-* A new node added to the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io)
-* A new backend added to the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io)
-* A changing ID when refreshing the [application page](http://www.hello.127.0.0.1.xip.io)
+* A new node added to the [consul dashboard](http://consul-admin.infra.127.0.0.1.nip.io)
+* A new backend added to the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.nip.io)
+* A changing ID when refreshing the [application page](http://www.hello.127.0.0.1.nip.io)
 
 
 ## Health checking
 
 Health checking is implemented at two levels in this stack:
 
-* [haproxy](http://proxy-admin.infra.127.0.0.1.xip.io) checks that port 80 of each member is up
-* [consul](http://consul-admin.infra.127.0.0.1.xip.io) checks that the node is up and that `/` returns a 200 status
+* [haproxy](http://proxy-admin.infra.127.0.0.1.nip.io) checks that port 80 of each member is up
+* [consul](http://consul-admin.infra.127.0.0.1.nip.io) checks that the node is up and that `/` returns a 200 status
 
 If either check fails, the node will not be proxified.
 
@@ -88,8 +88,8 @@ $ docker exec -ti $(basename $PWD)_web_2 pkill php-fpm
 
 This will kill the `php-fpm` master process of the second container:
 
-* The `web_2` node will be shown in error in the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www)
-* The `web_2` node will not appear anymore in the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io/#hello_www_backend)
+* The `web_2` node will be shown in error in the [consul dashboard](http://consul-admin.infra.127.0.0.1.nip.io/ui/#/dc1/services/www)
+* The `web_2` node will not appear anymore in the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.nip.io/#hello_www_backend)
 * The service will still run on the two other instances
 
 To fix it, kill the container and scale again:
@@ -111,11 +111,11 @@ $ docker-compose -f hello2.yml up -d
 
 you should see:
 
-* A new `world.dev` tag for the `www` service in the [consul dashboard](http://consul-admin.infra.127.0.0.1.xip.io/ui/#/dc1/services/www)
+* A new `world.dev` tag for the `www` service in the [consul dashboard](http://consul-admin.infra.127.0.0.1.nip.io/ui/#/dc1/services/www)
 * A new node in that service
-* A new `world.dev_www` backend in the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.xip.io/#world.dev_www_backend)
+* A new `world.dev_www` backend in the [haproxy dashboard](http://proxy-admin.infra.127.0.0.1.nip.io/#world.dev_www_backend)
 
-You can access the new application at [http://www.world.dev.127.0.0.1.xip.io](http://www.world.dev.127.0.0.1.xip.io) as well as [http://hello.home.127.0.0.1.xip.io](http://hello.home.127.0.0.1.xip.io).
+You can access the new application at [http://www.world.dev.127.0.0.1.nip.io](http://www.world.dev.127.0.0.1.nip.io) as well as [http://hello.home.127.0.0.1.nip.io](http://hello.home.127.0.0.1.nip.io).
 
 
 ## Notes

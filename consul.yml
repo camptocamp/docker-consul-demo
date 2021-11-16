@@ -3,7 +3,7 @@ lb:
   image: camptocamp/haproxy-consul:latest
   container_name: 'load-balancer'
   environment:
-    HAPROXY_DOMAIN: '127.0.0.1.xip.io:test'
+    HAPROXY_DOMAIN: '127.0.0.1.nip.io:test'
     SERVICE_80_IGNORE: 'yes'
     SERVICE_8080_NAME: 'proxy-admin_infra'
   ports:
