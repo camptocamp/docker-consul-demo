@@ -1,36 +1,37 @@
-# One max per physical node
-lb:
-  image: camptocamp/haproxy-consul:latest
-  container_name: 'load-balancer'
-  environment:
-    HAPROXY_DOMAIN: '127.0.0.1.nip.io:test'
-    SERVICE_80_IGNORE: 'yes'
-    SERVICE_8080_NAME: 'proxy-admin_infra'
-  ports:
-    - "80:80"
-    - "8080"
-  links:
-    - "consul"
+services:
+  # One max per physical node
+  lb:
+    image: camptocamp/haproxy-consul:latest
+    container_name: 'load-balancer'
+    environment:
+      HAPROXY_DOMAIN: '127.0.0.1.nip.io:test'
+      SERVICE_80_IGNORE: 'yes'
+      SERVICE_8080_NAME: 'proxy-admin_infra'
+    ports:
+      - "80:80"
+      - "8080"
+    links:
+      - "consul"
 
-# Only one for the whole cluster
-consul:
-  command: -server -bootstrap
-  image: progrium/consul:latest
-  container_name: 'consul'
-  environment:
-    SERVICE_53_IGNORE: 'yes'
-    SERVICE_8300_IGNORE: 'yes'
-    SERVICE_8301_IGNORE: 'yes'
-    SERVICE_8302_IGNORE: 'yes'
-    SERVICE_8400_IGNORE: 'yes'
-    SERVICE_8500_NAME: 'consul-admin_infra'
+  # Only one for the whole cluster
+  consul:
+    command: -server -bootstrap
+    image: progrium/consul:latest
+    container_name: 'consul'
+    environment:
+      SERVICE_53_IGNORE: 'yes'
+      SERVICE_8300_IGNORE: 'yes'
+      SERVICE_8301_IGNORE: 'yes'
+      SERVICE_8302_IGNORE: 'yes'
+      SERVICE_8400_IGNORE: 'yes'
+      SERVICE_8500_NAME: 'consul-admin_infra'
 
-# Exactly one per physical node
-registrator:
-  command: "-internal consul://consul:8500"
-  image: gliderlabs/registrator:latest
-  container_name: 'registrator'
-  links:
-    - "consul"
-  volumes:
-    - "/var/run/docker.sock:/tmp/docker.sock"
+  # Exactly one per physical node
+  registrator:
+    command: "-internal consul://consul:8500"
+    image: gliderlabs/registrator:latest
+    container_name: 'registrator'
+    links:
+      - "consul"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock"
