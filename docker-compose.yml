@@ -1,7 +1,8 @@
-# As many as wanted
-web:
-  image: tutum/hello-world
-  environment:
-    SERVICE_NAME: 'www_hello'
-    SERVICE_CHECK_HTTP: '/'
-    SERVICE_CHECK_INTERVAL: '5s'
+services:
+  # As many as wanted
+  web:
+    image: tutum/hello-world
+    environment:
+      SERVICE_NAME: 'www_hello'
+      SERVICE_CHECK_HTTP: '/'
+      SERVICE_CHECK_INTERVAL: '5s'
